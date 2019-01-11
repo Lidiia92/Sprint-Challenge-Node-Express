@@ -4,6 +4,7 @@ const router = express.Router();
 
 // database
 const projectDb = require("../../data/helpers/projectModel");
+const actionsDb = require("../../data/helpers/actionModel.js");
 
 //endpoints
 
@@ -90,5 +91,22 @@ router.put("/:id", async (req, res) => {
       });
     }
   });
+
+  router.get('/:projectId/actions', async (req, res) => {
+    const { projectId } = req.params;
+
+    try {
+        const project = await projectDb.get(projectId);
+        if(!project) {
+            res.status(404).json({message: "The project with the provided id could not be found"});
+        } else {
+            const actionsList = await actionsDb.get();
+            res.json(actionsList);
+        }
+    }
+    catch (err) {
+        res.status(500).json({message: "There was an erorr trying to retreive the actions list for the provided project"})
+    }
+}); 
 
 module.exports = router;
