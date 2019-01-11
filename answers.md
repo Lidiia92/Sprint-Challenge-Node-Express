@@ -13,4 +13,4 @@ It can return a response with a status code 200, meaning that the request was fu
 
  #How can we partition our application into sub-applications?
 
- We can partion it into smaller files, where each file will be responsible for handling particualar part of the application. 
+ We can partition it into smaller files, where each file will be responsible for handling particualar part of the application. 
